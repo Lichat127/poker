@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+# ♠️ Simplified Poker Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simplified poker game, a one-on-one match between the player and the computer. Developed with **React**, **TypeScript**, and **Tailwind CSS**, it demonstrates core frontend concepts for an interactive experience.
 
-## Available Scripts
+## 📖 Table of Contents
 
-In the project directory, you can run:
+- [Game Features](#-game-features)
+- [Requirements](#-requirements)
+- [Installation](#-installation)
+- [Running the Game Locally](#-running-the-game-locally)
+- [Technologies Used](#-technologies-used)
 
-### `npm start`
+## 🎮 Game Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **One-on-One Mode**: The player competes against the computer.
+- **Cards**: Each player is dealt 4 cards at the beginning of the game.
+- **Game Rounds**: The player can lock or replace cards over 3 rounds.
+- **Winner Announcement**: After three rounds, hands are compared, and the winner (or a tie) is displayed.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## ⚙️ Requirements
 
-### `npm test`
+- **Node.js** (version 18 or later)
+- **npm** or **yarn**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔧 Installation
 
-### `npm run build`
+Clone the repository, then install the necessary dependencies with npm.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/your-username/simplified-poker.git
+cd simplified-poker
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Running the Game Locally
+To start the local development server:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start
+```
+The game will be available at http://localhost:3000.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🛠 Technologies Used
+- React: for UI management.
+- TypeScript: for better code structure and maintainability.
+- Tailwind CSS: for fast and modular styling.

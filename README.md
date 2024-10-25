@@ -2,6 +2,8 @@
 
 This project is a simplified poker game, a one-on-one match between the player and the computer. Developed with **React**, **TypeScript**, and **Tailwind CSS**, it demonstrates core frontend concepts for an interactive experience.
 
+Access to the demonstration : https://lichat127.github.io/poker 
+
 ## 📖 Table of Contents
 
 - [Game Features](#-game-features)

@@ -6,6 +6,9 @@ export type CardProps = {
   value: Value;
   show?: boolean;
   style?: string;
+  player?: boolean;
+  isLocked?: boolean;
+  onToggleLock?: () => void;
 };
 
 const familySymbols: Record<Family, string> = {
@@ -35,8 +38,12 @@ const Card: React.FC<CardProps> = ({
   value,
   show = false,
   style = "",
+  player = false,
+  isLocked = false,
+  onToggleLock,
 }) => {
   let cardColor = "";
+
   if (family === "hearts" || family === "diamonds") {
     cardColor = "text-red-custom";
   } else {
@@ -59,7 +66,22 @@ const Card: React.FC<CardProps> = ({
     <div
       className={`w-32 h-48 rounded-lg shadow-lg flex flex-col justify-between p-3 bg-white ${cardColor} ${style} transition-all duration-500`}
     >
-      <div className="text-4xl">{familySymbols[family]}</div>
+      <div className="flex justify-between">
+        <div className="text-4xl">{familySymbols[family]}</div>
+        {player && (
+          <div className="self-start" onClick={onToggleLock}>
+            {isLocked ? (
+              <span role="img" aria-label="cadenas fermé">
+                🔒
+              </span>
+            ) : (
+              <span role="img" aria-label="cadenas ouvert">
+                🔓
+              </span>
+            )}
+          </div>
+        )}
+      </div>
       <div className="flex-grow flex items-center justify-center">
         <div className="text-6xl font-righteous">
           {displayValue(value, family)}

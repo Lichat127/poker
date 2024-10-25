@@ -29,10 +29,10 @@ const Poker: FC = () => {
   }, [state.status, state.computerHand.length]);
 
   useEffect(() => {
-    if (cardsRevealed) {
+    if (cardsRevealed && state.turn === 3) {
       dispatch({ type: "CHECK_WINNER" });
     }
-  }, [cardsRevealed]);
+  }, [cardsRevealed, state.turn]);
 
   useEffect(() => {
     switch (state.status) {
@@ -50,8 +50,11 @@ const Poker: FC = () => {
     }
   }, [state.status]);
 
+  const toggleLock = (index: number) => {
+    dispatch({ type: "TOGGLE_LOCK", payload: { index } });
+  };
+
   const renderGameContent = () => {
-    console.log(winnerText);
     if (state.status === Status.INIT) {
       return (
         <Button onClick={() => dispatch({ type: "START_GAME" })}>
@@ -59,7 +62,21 @@ const Poker: FC = () => {
         </Button>
       );
     } else if (state.status === Status.RUNNING) {
-      return <div></div>;
+      return (
+        <div className="flex flex-col items-center p-4">
+          <p className="test-m">
+            Tour : {state.turn}/{state.maxTurn}
+          </p>
+          <div className="flex gap-4">
+            <Button onClick={() => dispatch({ type: "CHECK_WINNER" })}>
+              VALIDER VOS CARTES
+            </Button>
+            <Button onClick={() => dispatch({ type: "PLAYER_DRAW" })}>
+              PIOCHER
+            </Button>
+          </div>
+        </div>
+      );
     } else {
       return (
         <div className="text-center">
@@ -73,7 +90,7 @@ const Poker: FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen pt-16">
+    <div className="flex flex-col min-h-screen pt-4">
       <div className="flex-1 flex flex-col items-center p-4">
         {state.status !== "INIT" && (
           <>
@@ -92,7 +109,7 @@ const Poker: FC = () => {
               <div className="flex justify-between w-full mt-4">
                 <p className="text-l mb-2">Annonce : {state.computerAnnonce}</p>
                 <p className="text-l mb-2">
-                  Carte la plus haute :{" "}
+                  Carte la plus haute de l'annonce :{" "}
                   {displayValue(state.ComputerHighestCard)}
                 </p>
               </div>
@@ -116,6 +133,9 @@ const Poker: FC = () => {
                   family={card.family}
                   value={card.value}
                   show={visibleCards.includes(index)}
+                  player={true}
+                  isLocked={card.isLocked}
+                  onToggleLock={() => toggleLock(index)}
                 />
               ))}
             </div>
@@ -123,7 +143,8 @@ const Poker: FC = () => {
               <div className="flex justify-between w-full mt-4">
                 <p className="text-l mb-2">Annonce : {state.playerAnnonce}</p>
                 <p className="text-l mb-2">
-                  Carte la plus haute : {displayValue(state.playerHighestCard)}
+                  Carte la plus haute de l'annonce :{" "}
+                  {displayValue(state.playerHighestCard)}
                 </p>
               </div>
             )}

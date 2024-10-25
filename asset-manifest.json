@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/poker/static/css/main.8daf0a73.css",
+    "main.js": "/poker/static/js/main.fe65c6d4.js",
+    "static/js/453.aaf86fbf.chunk.js": "/poker/static/js/453.aaf86fbf.chunk.js",
+    "static/media/card_and_poker.png": "/poker/static/media/card_and_poker.15b35f7cefba9c6e4a71.png",
+    "static/media/cards.png": "/poker/static/media/cards.bc6ed441963cc0be6059.png",
+    "index.html": "/poker/index.html",
+    "main.8daf0a73.css.map": "/poker/static/css/main.8daf0a73.css.map",
+    "main.fe65c6d4.js.map": "/poker/static/js/main.fe65c6d4.js.map",
+    "453.aaf86fbf.chunk.js.map": "/poker/static/js/453.aaf86fbf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8daf0a73.css",
+    "static/js/main.fe65c6d4.js"
+  ]
+}

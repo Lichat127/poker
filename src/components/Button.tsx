@@ -10,7 +10,7 @@ type ButtonProps = React.PropsWithChildren<{
 
 export const Button: FC<ButtonProps> = ({
   children,
-  className = "px-6 py-3  bg-red-custom hover:bg-red-custom-dark transition-colors text-xl rounded-md",
+  className = "px-3 py-2  bg-red-custom hover:bg-red-custom-dark transition-colors text-ml rounded-md",
   ...otherProps
 }) => {
   return (

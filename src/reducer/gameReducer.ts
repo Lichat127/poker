@@ -1,4 +1,9 @@
-import { CardProps } from "../components/Card";
+import { CardProps, Value } from "../components/Card";
+import {
+  checkHand,
+  checkWinnerLogic,
+  createHandDict,
+} from "../utils/checkWinner";
 import { createDeck } from "../utils/createDeck";
 import { pickCard } from "../utils/pickCard";
 
@@ -15,6 +20,11 @@ type State = {
   playerHand: CardProps[];
   computerHand: CardProps[];
   status: Status;
+  playerAnnonce: string;
+  playerHighestCard: string;
+  computerAnnonce: string;
+  ComputerHighestCard: string;
+  turn: number;
 };
 
 export const INITIAL_STATE: State = {
@@ -22,11 +32,15 @@ export const INITIAL_STATE: State = {
   playerHand: [],
   computerHand: [],
   status: Status.INIT,
+  playerAnnonce: "",
+  playerHighestCard: "",
+  computerAnnonce: "",
+  ComputerHighestCard: "",
+  turn: 0,
 };
 
 export type Action = {
   type: string;
-  payload?: string;
 };
 
 export const reducer = (state: State, action: Action): State => {
@@ -37,13 +51,34 @@ export const reducer = (state: State, action: Action): State => {
         pickCard(newDeck, 4);
       const { updatedDeck: deckAfterComputer, pickedCards: computerCards } =
         pickCard(deckAfterPlayer, 4);
-
       return {
-        ...state,
         deck: deckAfterComputer,
         playerHand: playerCards,
         computerHand: computerCards,
         status: Status.RUNNING,
+        playerAnnonce: "",
+        playerHighestCard: "",
+        computerAnnonce: "",
+        ComputerHighestCard: "",
+        turn: 0,
+      };
+    case "CHECK_WINNER":
+      const playerDict = createHandDict(state.playerHand);
+      const computerDict = createHandDict(state.computerHand);
+
+      const playerResult = checkHand(playerDict);
+      const computerResult = checkHand(computerDict);
+
+      console.log(playerResult);
+
+      const winner_status = checkWinnerLogic(playerResult, computerResult);
+      return {
+        ...state,
+        status: winner_status,
+        playerAnnonce: playerResult.annonce ? playerResult.annonce : "",
+        playerHighestCard: playerResult.card ? playerResult.card[0] : "",
+        computerAnnonce: computerResult.annonce ? computerResult.annonce : "",
+        ComputerHighestCard: computerResult.card ? computerResult.card[0] : "",
       };
     default:
       throw Error("Unexpected action");

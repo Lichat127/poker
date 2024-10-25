@@ -1,5 +1,5 @@
 type Family = "hearts" | "diamonds" | "clubs" | "spades";
-type Value = "7" | "8" | "9" | "10" | "11" | "12" | "13" | "14";
+export type Value = "7" | "8" | "9" | "10" | "11" | "12" | "13" | "14";
 
 export type CardProps = {
   family: Family;
@@ -15,16 +15,16 @@ const familySymbols: Record<Family, string> = {
   spades: "♠",
 };
 
-const displayValue = (family: Family, value: Value): string => {
+export const displayValue = (value: string, family?: Family): string => {
   switch (value) {
     case "11":
-      return "J";
+      return family ? "J" : "Valet";
     case "12":
-      return "Q";
+      return family ? "Q" : "Reine";
     case "13":
-      return "K";
+      return family ? "K" : "Roi";
     case "14":
-      return familySymbols[family];
+      return family ? familySymbols[family] : "As";
     default:
       return value;
   }
@@ -57,12 +57,12 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`w-32 h-48 rounded-lg shadow-lg flex flex-col justify-between p-3 bg-white ${cardColor} ${style}`}
+      className={`w-32 h-48 rounded-lg shadow-lg flex flex-col justify-between p-3 bg-white ${cardColor} ${style} transition-all duration-500`}
     >
       <div className="text-4xl">{familySymbols[family]}</div>
       <div className="flex-grow flex items-center justify-center">
         <div className="text-6xl font-righteous">
-          {displayValue(family, value)}
+          {displayValue(value, family)}
         </div>
       </div>
       <div className="text-4xl self-end transform rotate-180">
